@@ -48,8 +48,8 @@ ProtoPilot takes any project idea (text) and orchestrates **6 AI agents in paral
 │  │  parallel     │  │  + Reddit     │  │  + first commit    │     │
 │  │  (Gemini 3    │  │  + Serper     │  └────────────────────┘     │
 │  │   Flash via   │  │  + YouTube    │                             │
-│  │   Emergent    │  └───────┬───────┘                             │
-│  │   LLM Key)    │          │ 10-min TTL cache                    │
+│  │   LLM Key)    │  └───────┬───────┘                             │
+│  │               │          │ 10-min TTL cache                    │
 │  └───────┬───────┘          │                                     │
 │          │                  │                                     │
 │          ▼                  ▼                                     │
@@ -224,12 +224,6 @@ Frontend has been e2e verified via automated Playwright flow — all 6 tabs rend
 - PDF pitch deck export
 - React Native Expo mobile companion
 - URL verification icons on citations (HEAD check → green tick)
-
----
-
-## License
-
-MIT — hack away.
 
 ---
 
