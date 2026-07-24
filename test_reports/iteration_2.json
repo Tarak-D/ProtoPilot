@@ -1,0 +1,47 @@
+{
+  "summary": "Iteration 2 regression PASSED for backend (14/14 pytest cases green) and mostly PASSED for frontend. Home page, project creation, dashboard, 6-agent SSE token-streaming, DONE badges on all agents, all 6 tabs (Orchestra/Judge/Museum/Reality/Time/Ship), and footer with Team Silence · Ajeenkya DY Patil · 0A7DD70427DE all confirmed working. One React warning regression: duplicate key 'log-3' triggered on Dashboard live-log rendering.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Dashboard.jsx (live-log panel)",
+        "issue": "React warns 'Encountered two children with the same key, log-3'. The iteration-2 stable-key fix using `log-${logCounter.current}` is not race-safe. Auto-start useEffect in React 18 StrictMode double-invokes run(), which resets logCounter.current=0 twice while both parallel SSE handlers push logs — producing colliding ids (log-1, log-2, log-3 duplicated across the two runs).",
+        "selector": "log rendering inside OrchestraView 'live log' panel",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_protopilot_backend.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix duplicate log key bug in /app/frontend/src/pages/Dashboard.jsx: guard against StrictMode double-invocation of run(). Options: (a) key logs by `${Date.now()}-${logCounter.current}` or a UUID; (b) use a locally-scoped counter inside run() rather than a shared ref; (c) add a running lock via ref that is set synchronously at the top of run() so the second invocation exits before mutating counter/log."
+  ],
+  "critical_code_review_comments": [
+    "Dashboard.jsx run() resets logCounter.current=0 AND calls setLog([]) but relies on those to propagate before the next pushLog. Under StrictMode / rapid re-invocation this races and yields duplicate React keys.",
+    "server.py ship_it initializes `url: Optional[str] = None` correctly (fix verified). No 500 path leaks now.",
+    "api.js SSE parser catch now logs to console.warn — verified in code, non-breaking.",
+    "citations key in CitationsList uses `c.url || ${c.source}-${i}` — safe.",
+    "No MongoDB _id leaks (all find_one calls use projection {'_id': 0})."
+  ],
+  "updated_files": [
+    "/app/backend/tests/__init__.py (new empty)",
+    "/app/backend/tests/test_protopilot_backend.py (new — 14 test cases covering all 11 endpoints + SSE token-level assertions + real-URL citation assertions)"
+  ],
+  "success_rate": {
+    "backend": "100% (14/14)",
+    "frontend": "~90% — all flows work but React duplicate-key warning fires continuously during orchestration"
+  },
+  "test_credentials": "none required; EMERGENT_LLM_KEY already set. GitHub/Serper/YouTube/Reddit keys intentionally empty.",
+  "seed_data_creation": "One project created with idea 'AI to reduce food waste in college hostels' during e2e test; also deleted at end via TestZDelete pytest case.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression is fully covered by /app/backend/tests/test_protopilot_backend.py (pytest -v, ~35s runtime). SSE test asserts >=1 agent_token per agent and http/https real URLs in citations (arxiv keyless). For frontend, only remaining issue is the duplicate React key in log rendering — after main agent fixes, re-verify by running the Playwright flow in this iteration (home → launch → orchestra → wait for 6 DONE badges → no console error about duplicate keys). Note: some parallel Gemini calls may return '[agent temporarily offline: ...]' due to rate limits — that is expected fallback behavior per iteration_1 report and is NOT a regression.",
+  "rca of the issue": "React duplicate key warning: Dashboard.jsx auto-start useEffect fires twice in React 18 StrictMode (dev). autoStarted.current guard sets true on the first call but the second useEffect invocation runs before React commits the ref mutation? Actually the ref mutation is synchronous — however BOTH run() calls also share the setRunning(true) which is async, so on second sync invocation `running` is still false and the `if (running) return` guard passes. Both invocations then reset logCounter.current=0 and start two SSE streams whose interleaved pushLog() calls generate the same log-1/log-2/log-3 ids in the concatenated log array. Reproduction: open dashboard for a fresh project in dev build → observe hundreds of 'Encountered two children with the same key, log-3' warnings in browser console. Mitigation: (a) synchronously set a `startedRef.current = true` at the top of run() and early-return if already true; or (b) key logs by monotonic Date.now()+random rather than a resettable counter."
+}

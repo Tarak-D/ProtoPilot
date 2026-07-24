@@ -1,0 +1,126 @@
+{
+  "theme": "dark",
+  "typography": {
+    "fonts": {
+      "heading": "Outfit, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3": "text-xl sm:text-2xl tracking-tight font-semibold",
+      "body": "text-sm sm:text-base leading-relaxed",
+      "mono_labels": "text-xs uppercase tracking-[0.2em] font-mono"
+    },
+    "instructions": "Use Outfit for all Headings to give a technical yet polished look. Use JetBrains Mono for agent logs, status indicators, and numbers. Do NOT use Inter for headings."
+  },
+  "colors": {
+    "background": "#000000",
+    "surface": "#121212",
+    "surface_hover": "#1E1E1E",
+    "border": "#27272a",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "accents": {
+      "cyan": "#00F0FF",
+      "amber": "#FFB000",
+      "electric_green": "#00FF41",
+      "red": "#FF3B30"
+    },
+    "instructions": "Rely heavily on deep blacks and dark charcoals. Use the cyan and amber purely as accents for active states, borders, or critical information. Avoid purple/AI slop gradients."
+  },
+  "visual_enhancers": {
+    "borders": "1px solid border color on all panels. Sharp edges (rounded-none or max rounded-sm). Implement 'Tracing Beam' on the currently active Agent Orchestra card.",
+    "shadows": "Replace soft shadows with 1px solid strokes or 2px 'Inner Glow' highlights. Use drop-shadow glow (e.g., drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]) ONLY for high-energy text or critical active states.",
+    "textures": "Incorporate subtle CSS scanlines (repeating-linear-gradient) for the Failure Museum and Judge Simulator to enhance the retro-futurism/terminal feel."
+  },
+  "component_name": {
+    "strategy": "Shadcn/UI components heavily stripped of their default 'Vercel-look' borders/shadows to match the brutalist terminal vibe.",
+    "specifics": {
+      "inputs": "Must look like command-line prompts. Monospace fonts, high contrast.",
+      "cards": "Sharp, cardless look. 1px borders. Use border-collapse style layouts for dense grids.",
+      "buttons": "Sharp corners. High contrast on hover (e.g., bg-cyan text-black).",
+      "charts": "Recharts for the Reality Check radar chart.",
+      "tabs": "Override default h-9 to h-auto. Sharp active states without soft pills."
+    }
+  },
+  "grids": {
+    "dashboard_mode": "High Density Grid. Base grid-cols-1 md:grid-cols-12 gap-4. Every pixel must be utilized. No jagged bottoms. Override default stretch with align-self."
+  },
+  "layouts": {
+    "home": "Minimalist hero. Large 'ProtoPilot' heading. Terminal-style input field taking center stage. Sample prompts as mono pills below.",
+    "live_dashboard": "Bento grid structure. Left column (col-span-3): 6 Agent orchestra cards. Center (col-span-6): 3D Knowledge Graph + Live Terminal Logs. Right (col-span-3): Citations Panel.",
+    "judge_simulator": "3 equal columns for 3 AI Judges. Top row houses live scoring (Clarity/Depth/Confidence gauges).",
+    "failure_museum": "Grid of 'dead repo' cards. Red/Amber accents. Use terminal error styles for the 'AI autopsy' details.",
+    "reality_check": "Central Radar chart. Surrounding metrics (Skills, Budget, Time, Team). Bold CTA for 'Ship It'.",
+    "time_machine": "Horizontal timeline spanning 5 years past (muted) to 2 years future (cyan glowing).",
+    "ship_it_modal": "Full-screen overlay simulating a fast terminal build process.",
+    "project_workspace": "List/Table layout of past projects with status badges.",
+    "footer": "Must display Team name: 'Silence', College: 'Ajeenkya DY Patil', Team ID: '0A7DD70427DE'. Mono font, text-xs."
+  },
+  "motion": {
+    "interactions": "Snappy, micro-interactions (0.15s) on hover. Hover states must explicitly set text color.",
+    "agent_orchestra": "Pulse animations for actively speaking/thinking agents. Staggered typing effects for live logs."
+  },
+  "accessibility": {
+    "contrast": "Text below 18px needs 4.5:1 ratio. Interactive elements 3:1 against adjacent colors.",
+    "focus": "Focus states must have HIGHER contrast, eg: ring-2 ring-cyan.",
+    "testing": "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='ship-it-button')."
+  },
+  "media": {
+    "icons": "Use lucide-react exclusively. No emojis.",
+    "images": "Use cautiously. Apply monochrome or high-contrast filters to match the dark UI."
+  },
+  "3d_libraries": {
+    "primary": "react-force-graph-3d",
+    "usage": "Use for the '3D Knowledge Graph' visualization. Must set background to transparent (rgba(0,0,0,0)). Nodes should be Tech Cyan, links should be dark grey."
+  },
+  "image_urls": {
+    "failure_museum_bg": {
+      "url": "https://images.unsplash.com/photo-1714846201700-35b42d937158",
+      "category": "Failure Museum Cards Background",
+      "description": "Close up of computer screen with data - to overlay as low opacity tech texture."
+    },
+    "hero_abstract": {
+      "url": "https://images.unsplash.com/photo-1585900464046-f713a61424dd",
+      "category": "Hero Section / Background",
+      "description": "Shadowy tech atmosphere."
+    },
+    "judge_avatar": {
+      "url": "https://images.pexels.com/photos/14000461/pexels-photo-14000461.jpeg",
+      "category": "Judge Simulator",
+      "description": "Shadowy figure in mask - use as avatar for the harshest AI Judge."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Design for .js/.jsx files (not TypeScript).",
+    "Install and use 'react-force-graph-3d' for the knowledge graph.",
+    "Install 'recharts' for the Reality Check radar chart.",
+    "Install 'lucide-react' for all icons. Absolutely NO EMOJIS.",
+    "Create Shadcn-like components manually or customize them heavily with sharp corners and terminal aesthetics.",
+    "Use deep blacks and cyan/amber/green accents. Do not use generic purple SaaS gradients.",
+    "Ensure all 7 screens plus the workspace list are implemented or visually distinct.",
+    "Do NOT use complete transparent background in headers/overlays; use solid dark colors to prevent readability issues.",
+    "Include Team Silence, Ajeenkya DY Patil, and Team ID 0A7DD70427DE in the footer or about section."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) ONLY where appropriate, but prefer solid dark surfaces with 1px borders for this terminal theme.",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file.",
+    "Always use modern button styles like sharp cornered buttons with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing.",
+    "Use sonner for toasts.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "DO NOT use complete transparent background in header, overlays, any surface that has content under it.",
+    "Always add GENERAL UI UX DESIGN GUIDELINES"
+  ]
+}
