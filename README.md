@@ -3,7 +3,6 @@
 > **From idea to GitHub commit in 7 minutes.**
 > A multi-agent AI Research & Innovation Copilot for students.
 
-**Team Silence** · Ajeenkya DY Patil College of Engineering · Team ID `0A7DD70427DE`
 Built for the *Search Less. Solve More.* theme — powered by **iNSIGHTS Layer 2**.
 
 ---
@@ -227,4 +226,4 @@ Frontend has been e2e verified via automated Playwright flow — all 6 tabs rend
 
 ---
 
-*ProtoPilot · Team Silence · Ajeenkya DY Patil · 0A7DD70427DE · Search Less. Solve More.*
+*ProtoPilot  · Search Less. Solve More.*
