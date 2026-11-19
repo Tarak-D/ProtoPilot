@@ -7,7 +7,7 @@ Built for the *Search Less. Solve More.* theme — powered by **iNSIGHTS Layer 2
 
 ---
 
-## What it does
+## What it does ?
 
 ProtoPilot takes any project idea (text) and orchestrates **6 AI agents in parallel** — Research, Architect, Critic, Code, Citation, Judge — streaming their thoughts live via SSE. It grounds every claim in **real** ArXiv papers, GitHub repos, and StackOverflow answers (no hallucinated URLs), builds a live 3D knowledge graph, then ships a **real GitHub repository** with README + scaffold + first commit on demand.
 
