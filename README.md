@@ -147,7 +147,7 @@ yarn start
 |---|---|
 | `MONGO_URL` | Mongo connection string (e.g. `mongodb://localhost:27017`) |
 | `DB_NAME` | Database name (default: `protopilot_db`) |
-| `EMERGENT_LLM_KEY` | Universal Emergent key that unlocks Gemini 3 Flash (pre-populated) |
+| `LLM_KEY` | Key that unlocks Gemini 3 Flash (pre-populated) |
 | `CORS_ORIGINS` | Comma-separated allowed origins (`*` in dev) |
 
 ### `backend/.env` (optional — unlock full DeepSearch + Ship It)
